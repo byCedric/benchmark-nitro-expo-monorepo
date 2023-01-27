@@ -1,7 +1,4 @@
 # Expo
-/android
-/ios
-
 __generated__
 node_modules
 .expo/*
