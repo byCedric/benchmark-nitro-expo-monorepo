@@ -16,11 +16,17 @@ jobs:
     env:
       NITRO_API_KEY: ${{ secrets.NITRO_KEY }}
     steps:
-      - uses: actions/checkout@v3
+      - name: 🏗 Setup repository
+        uses: actions/checkout@v3
+
+      - name: 🏗 Setup monorepo
+        uses: ./.github/actions/setup-monorepo
+
       - uses: nitro-build/github-action-nitro-android@v1
         id: nitro
         with:
-          root_directory: apps/mobile
+          root-directory: apps/mobile
+
       - uses: actions/upload-artifact@v3
         with:
           path: ${{ steps.nitro.outputs.nitro-output-dir }}
@@ -31,11 +37,17 @@ jobs:
     env:
       NITRO_API_KEY: ${{ secrets.NITRO_KEY }}
     steps:
-      - uses: actions/checkout@v3
+      - name: 🏗 Setup repository
+        uses: actions/checkout@v3
+
+      - name: 🏗 Setup monorepo
+        uses: ./.github/actions/setup-monorepo
+
       - uses: nitro-build/github-action-nitro-ios@v1
         id: nitro
         with:
-          root_directory: apps/mobile
+          root-directory: apps/mobile
+
       - uses: actions/upload-artifact@v3
         with:
           path: ${{ steps.nitro.outputs.nitro-output-dir }}
