@@ -1,0 +1,76 @@
+{
+  "private": true,
+  "name": "@acme/ui",
+  "version": "1.0.0",
+  "description": "Acme UI components for React Native",
+  "author": "Cedric van Putten <me@bycedric.com>",
+  "license": "MIT",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "react-native": "./src/index.ts",
+  "files": [
+    "build",
+    "src"
+  ],
+  "scripts": {
+    "dev": "tsup --watch --silent",
+    "lint": "eslint --ext js,ts,tsx .",
+    "test": "jest",
+    "build": "tsup --clean"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "*",
+    "@testing-library/react-native": "^11.4.0",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/jest": "^26.0.24",
+    "@types/react": "~18.0.25",
+    "@types/react-native": "~0.70.6",
+    "babel-preset-expo": "~9.2.1",
+    "jest": "^26.6.3",
+    "jest-expo": "^47.0.1",
+    "react": "18.1.0",
+    "react-native": "0.70.5",
+    "react-test-renderer": "18.1.0",
+    "tsup": "^6.5.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-web": "*"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    },
+    "react-native-web": {
+      "optional": true
+    }
+  },
+  "eslintConfig": {
+    "extends": "@acme/eslint-config",
+    "ignorePatterns": [
+      "node_modules",
+      "build"
+    ]
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/"
+    ]
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "outDir": "build",
+    "sourcemap": true,
+    "dts": true,
+    "external": [
+      "react",
+      "react-native",
+      "react-native-web"
+    ]
+  }
+}
