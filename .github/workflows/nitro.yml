@@ -2,16 +2,18 @@ on:
   workflow_dispatch:
     inputs:
       platform:
-        description: Platform to build for (android/ios)
+        description: Platform to build for (all/android/ios)
         type: choice
         required: true
+        default: all
         options:
+          - all
           - android
           - ios
 
 jobs:
   android:
-    if: ${{ github.event.inputs.platform == 'android' }}
+    if: ${{ contains('all android', github.event.inputs.platform) }}
     runs-on: ubuntu-latest
     env:
       NITRO_API_KEY: ${{ secrets.NITRO_KEY }}
@@ -32,7 +34,7 @@ jobs:
           path: ${{ steps.nitro.outputs.nitro-output-dir }}
 
   ios:
-    if: ${{ github.event.inputs.platform == 'ios' }}
+    if: ${{ contains('all ios', github.event.inputs.platform) }}
     runs-on: macos-latest
     env:
       NITRO_API_KEY: ${{ secrets.NITRO_KEY }}
